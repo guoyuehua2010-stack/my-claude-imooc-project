@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>财务管家 - 个人设置</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "category-shopping": "#FFE5B5",
+                      "on-secondary-fixed-variant": "#5a3777",
+                      "on-surface-variant": "#514346",
+                      "on-error-container": "#93000a",
+                      "text-secondary": "#9B9B9B",
+                      "on-tertiary-fixed": "#002118",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed-dim": "#96d3bd",
+                      "surface-container-low": "#f5f3f3",
+                      "surface-container-high": "#e9e8e7",
+                      "surface-container-highest": "#e4e2e2",
+                      "surface-container": "#efeded",
+                      "tertiary-container": "#98d6bf",
+                      "tertiary-fixed": "#b1efd8",
+                      "surface": "#fbf9f8",
+                      "on-tertiary-fixed-variant": "#0d503f",
+                      "tertiary": "#2c6956",
+                      "on-tertiary-container": "#205e4d",
+                      "outline-variant": "#d6c2c4",
+                      "category-edu": "#FFF5B5",
+                      "outline": "#847376",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#f2daff",
+                      "category-transport": "#B5DAFF",
+                      "background": "#fbf9f8",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#e1b6ff",
+                      "on-primary-container": "#7b4351",
+                      "secondary-container": "#deb3fd",
+                      "primary-container": "#ffb5c5",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#dbdad9",
+                      "secondary": "#744f90",
+                      "primary": "#874d5b",
+                      "on-background": "#1b1c1c",
+                      "surface-variant": "#e4e2e2",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed-dim": "#fcb2c2",
+                      "surface-tint": "#874d5b",
+                      "background-cream": "#FFF9FA",
+                      "primary-fixed": "#ffd9e0",
+                      "expense-coral": "#FF8A8A",
+                      "error": "#ba1a1a",
+                      "inverse-primary": "#fcb2c2",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#f2f0f0",
+                      "on-secondary-fixed": "#2c0648",
+                      "inverse-surface": "#303030",
+                      "category-dining": "#FFB5BA",
+                      "category-housing": "#C5E8D5",
+                      "on-secondary-container": "#654181",
+                      "on-surface": "#1b1c1c",
+                      "income-mint": "#A8E6CF",
+                      "on-primary-fixed-variant": "#6c3644",
+                      "surface-bright": "#fbf9f8",
+                      "on-primary-fixed": "#370c19"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "lg": "24px",
+                      "xs": "8px",
+                      "xl": "32px",
+                      "sm": "12px",
+                      "md": "16px",
+                      "base": "4px",
+                      "gutter": "16px",
+                      "container-margin": "20px"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "headline-md": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-price": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "label-sm": [
+                              "Be Vietnam Pro"
+                      ],
+                      "headline-lg-mobile": [
+                              "Plus Jakarta Sans"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-price": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.03em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        /* Soft tactile shadow for cards based on Style Guidance */
+        .shadow-soft-kawaii {
+            box-shadow: 0px 4px 15px -2px rgba(255, 181, 197, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background-cream text-on-surface min-h-screen flex font-body-md text-body-md">
+<!-- SideNavBar (Shared Component) -->
+<aside class="bg-surface dark:bg-surface-dim shadow-sm fixed left-0 top-0 h-screen w-64 border-r border-background-cream flex flex-col p-md hidden md:flex z-50">
+<!-- Header -->
+<div class="flex items-center gap-sm mb-xl mt-sm px-xs">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A charming, soft-kawaii 3D rendered avatar of a cute animal character representing a user profile, set against a pristine white background. The character wears a pastel pink scarf. The lighting is high-key and studio-quality, emphasizing smooth, friendly geometry and a calming, modern minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5ERONmosUNwxj0nB5mdrXvwwCVRxA3gAi--GPFgx5vVkQ-LdkujdiojOddP4aQnKU8pcUDxJzZhZetB8TnR1ocUKAcITTLHL8znE5Kaa-v3o0jD-Ytlx9QhQD9aXIpxiqVPW6Oyk0xf7HsdWOcGW0GCzj6syzYYYP38kfspZqTE_ImPzaKmsMswe3CctlC1akDW6y4vjUD8MnzkGqxrR10J4VjCUseK02EkOcXJXbLsQW8EQ-wkaMXw"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">财务管家</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Financial Steward</p>
+</div>
+</div>
+<!-- Main Navigation -->
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-container rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                首页
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-container rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">edit_square</span>
+                记账
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-container rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                账单
+            </a>
+<!-- Active Tab: "我的" -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold font-label-md text-label-md scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+                我的
+            </a>
+</nav>
+<!-- CTA Button -->
+<div class="mt-auto mb-md">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-primary-fixed transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                快速记账
+            </button>
+</div>
+<!-- Footer Navigation -->
+<div class="border-t border-outline-variant/30 pt-sm space-y-xs">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-container rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                设置
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high dark:hover:bg-surface-container rounded-xl transition-all font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                退出
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 p-container-margin md:p-xl w-full max-w-[1200px] mx-auto">
+<!-- Page Title (Mobile Only fallback conceptually, but good to have) -->
+<div class="mb-lg flex justify-between items-center">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">个人设置</h2>
+</div>
+<!-- Bento Grid Layout for Profile & Settings -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Profile Header Card (Spans full width on top) -->
+<div class="col-span-1 md:col-span-12 bg-surface-container-lowest rounded-xl p-lg shadow-soft-kawaii flex items-center gap-lg">
+<div class="relative">
+<img class="w-24 h-24 rounded-full object-cover border-4 border-surface-container-low" data-alt="A high-quality 3D minimalist avatar of a serene user, soft pastel colors, set in a bright light-mode environment. The character has gentle, rounded features conveying calm control. The lighting is diffused, casting a very soft pink-tinted shadow beneath the avatar on a pristine cream background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDLMkKybygUek8PAkDxFnYVgLajVHHKBMGZRNB03ftqf7CCMXydFmztbG49snU7-ZaripleDI4BMYJQbzq2uh1_IRUgg4drTnDOqFDKx7WpjbPzPj4BhQoLcF6b7lZ1AqFAv8AXMnGNpBNFTWCScTFZ4SvZ5XwP9jSjdx_pbDQBDjithUGuih2EKyDQosX_0F0RtlY44W1tfbS-UEe06ufqZwciJaZGgFt9-wAlIRbNfqESqSXA4UgezQ"/>
+<button class="absolute bottom-0 right-0 bg-primary-container text-on-primary-container p-2 rounded-full shadow-sm hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">林小梦</h3>
+<span class="bg-primary-fixed text-on-primary-fixed rounded-full px-3 py-1 font-label-sm text-label-sm flex items-center gap-1">
+                            🌸 尊贵会员
+                        </span>
+</div>
+<p class="text-text-secondary font-body-md text-body-md">让每一笔花销都充满确幸与美好 🎀</p>
+</div>
+<div class="hidden md:block">
+<button class="border-2 border-primary-container text-primary bg-transparent rounded-xl px-4 py-2 hover:bg-primary-fixed transition-colors font-label-md text-label-md flex items-center gap-2">
+<span class="material-symbols-outlined">edit</span>
+                        编辑资料
+                    </button>
+</div>
+</div>
+<!-- Left Column: Settings -->
+<div class="col-span-1 md:col-span-8 flex flex-col gap-gutter">
+<!-- Monthly Budget Section -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-soft-kawaii">
+<div class="flex items-center gap-3 mb-md">
+<div class="w-10 h-10 rounded-full bg-category-shopping flex items-center justify-center text-xl">💰</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">月度预算设置</h4>
+</div>
+<p class="text-text-secondary font-body-md text-body-md mb-md">设置合理预算，告别月末焦虑。</p>
+<div class="space-y-sm">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface-variant mb-xs">总预算金额 (¥)</label>
+<input class="w-full bg-surface rounded-lg p-sm border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors font-body-md text-body-md text-on-surface" placeholder="输入金额..." type="text" value="5000.00"/>
+</div>
+<div class="pt-sm">
+<button class="w-auto bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-on-primary-container transition-colors shadow-sm">
+                                保存设置
+                            </button>
+</div>
+</div>
+</div>
+<!-- Account Security Section -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-soft-kawaii">
+<div class="flex items-center gap-3 mb-md">
+<div class="w-10 h-10 rounded-full bg-category-housing flex items-center justify-center text-xl">🔒</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">账号安全</h4>
+</div>
+<div class="space-y-0">
+<div class="flex items-center justify-between py-md border-b border-background-cream hover:bg-surface-container-low transition-colors px-xs rounded-lg cursor-pointer">
+<div>
+<h5 class="font-label-md text-label-md text-on-surface">修改密码</h5>
+<p class="font-label-sm text-label-sm text-text-secondary">定期修改密码以保护账号安全</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+<div class="flex items-center justify-between py-md border-b border-background-cream hover:bg-surface-container-low transition-colors px-xs rounded-lg cursor-pointer">
+<div>
+<h5 class="font-label-md text-label-md text-on-surface">绑定邮箱</h5>
+<p class="font-label-sm text-label-sm text-text-secondary">lin.xiaomeng@example.com</p>
+</div>
+<span class="material-symbols-outlined text-primary-container">verified</span>
+</div>
+<div class="flex items-center justify-between py-md hover:bg-surface-container-low transition-colors px-xs rounded-lg cursor-pointer">
+<div>
+<h5 class="font-label-md text-label-md text-on-surface">设备管理</h5>
+<p class="font-label-sm text-label-sm text-text-secondary">查看当前登录设备</p>
+</div>
+<span class="material-symbols-outlined text-outline">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Data & Actions -->
+<div class="col-span-1 md:col-span-4 flex flex-col gap-gutter">
+<!-- Data Export Section -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-soft-kawaii">
+<div class="flex items-center gap-3 mb-md">
+<div class="w-10 h-10 rounded-full bg-category-transport flex items-center justify-center text-xl">📊</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">导出账单数据</h4>
+</div>
+<p class="text-text-secondary font-body-md text-body-md mb-lg">随时备份您的财务记录，支持多种格式。</p>
+<div class="flex flex-col gap-sm">
+<button class="w-full border-2 border-primary-container text-primary bg-transparent rounded-xl px-4 py-3 hover:bg-primary-fixed transition-colors font-label-md text-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">description</span>
+                            导出为 CSV
+                        </button>
+<button class="w-full border-2 border-outline-variant text-on-surface-variant bg-transparent rounded-xl px-4 py-3 hover:bg-surface-container transition-colors font-label-md text-label-md flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">data_object</span>
+                            导出为 JSON
+                        </button>
+</div>
+</div>
+<!-- Theme/Visual Preview (Decorative Bento Box) -->
+<div class="bg-surface-container-lowest rounded-xl p-lg shadow-soft-kawaii overflow-hidden relative min-h-[160px] flex flex-col justify-end">
+<div class="absolute inset-0 bg-cover bg-center opacity-40" data-alt="A delicate, abstract watercolor pattern in soft pastel pinks, creams, and mint greens, embodying a tranquil soft-kawaii aesthetic. The textures are fluid and gentle, reminiscent of cherry blossoms floating on calm water in a serene, light-filled environment." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBON5ditEyrelAsOv7wbsUF8aXmHRgRwyYfkOu5kzOEpvV8YIysMOa5udNskSZFSg3QIms4buEVtdqQLInN82fDkeIxvDZ17_r5xTlSnwpLvfqxYkQNBlvu1hBGsTGNkyttRi7RvpHTgyCUfuhkWrm-HX15bxEoX36fKqp5fvJNOyExwVJDq6zABnjj1n0fcIkkWMYV1_hVqks6Ifv0SPEU50qOcuOKvRsqvVBlXaVfO0AkT83-E70iOg')"></div>
+<div class="relative z-10">
+<h4 class="font-label-md text-label-md text-on-surface mb-1">主题外观</h4>
+<p class="font-label-sm text-label-sm text-text-secondary">樱花粉 (当前使用)</p>
+</div>
+</div>
+<!-- Log Out Button -->
+<button class="mt-auto w-full bg-error-container text-on-error-container hover:bg-error hover:text-on-error rounded-xl p-md text-center transition-colors font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm">
+<span class="material-symbols-outlined">logout</span>
+                    退出登录
+                </button>
+</div>
+</div>
+</main>
+</body></html>

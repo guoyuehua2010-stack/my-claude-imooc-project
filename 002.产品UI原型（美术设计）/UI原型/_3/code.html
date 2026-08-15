@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>注册 - 财务管家</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "category-shopping": "#FFE5B5",
+                        "on-secondary-fixed-variant": "#5a3777",
+                        "on-surface-variant": "#514346",
+                        "on-error-container": "#93000a",
+                        "text-secondary": "#9B9B9B",
+                        "on-tertiary-fixed": "#002118",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#96d3bd",
+                        "surface-container-low": "#f5f3f3",
+                        "surface-container-high": "#e9e8e7",
+                        "surface-container-highest": "#e4e2e2",
+                        "surface-container": "#efeded",
+                        "tertiary-container": "#98d6bf",
+                        "tertiary-fixed": "#b1efd8",
+                        "surface": "#fbf9f8",
+                        "on-tertiary-fixed-variant": "#0d503f",
+                        "tertiary": "#2c6956",
+                        "on-tertiary-container": "#205e4d",
+                        "outline-variant": "#d6c2c4",
+                        "category-edu": "#FFF5B5",
+                        "outline": "#847376",
+                        "on-error": "#ffffff",
+                        "secondary-fixed": "#f2daff",
+                        "category-transport": "#B5DAFF",
+                        "background": "#fbf9f8",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#e1b6ff",
+                        "on-primary-container": "#7b4351",
+                        "secondary-container": "#deb3fd",
+                        "primary-container": "#ffb5c5",
+                        "on-tertiary": "#ffffff",
+                        "surface-dim": "#dbdad9",
+                        "secondary": "#744f90",
+                        "primary": "#874d5b",
+                        "on-background": "#1b1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed-dim": "#fcb2c2",
+                        "surface-tint": "#874d5b",
+                        "background-cream": "#FFF9FA",
+                        "primary-fixed": "#ffd9e0",
+                        "expense-coral": "#FF8A8A",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#fcb2c2",
+                        "error-container": "#ffdad6",
+                        "inverse-on-surface": "#f2f0f0",
+                        "on-secondary-fixed": "#2c0648",
+                        "inverse-surface": "#303030",
+                        "category-dining": "#FFB5BA",
+                        "category-housing": "#C5E8D5",
+                        "on-secondary-container": "#654181",
+                        "on-surface": "#1b1c1c",
+                        "income-mint": "#A8E6CF",
+                        "on-primary-fixed-variant": "#6c3644",
+                        "surface-bright": "#fbf9f8",
+                        "on-primary-fixed": "#370c19"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xs": "8px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter": "16px",
+                        "container-margin": "20px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Be Vietnam Pro"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "display-price": ["Plus Jakarta Sans"],
+                        "label-sm": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-md": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }],
+                        "display-price": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "800" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    },
+                    "boxShadow": {
+                        'soft': '0 4px 15px -2px rgba(255, 181, 197, 0.15)',
+                        'button': '0 4px 0 0 rgba(255, 181, 197, 0.5)',
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FFF9FA; /* background-cream */
+            color: #1b1c1c; /* on-background */
+        }
+        .bg-pattern {
+            background-image: radial-gradient(circle at 20px 20px, #FFDDE4 2px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center font-body-md text-body-md overflow-hidden relative">
+<!-- Decorative background elements -->
+<div class="absolute top-[-10%] left-[-5%] w-[40vw] h-[40vw] rounded-full bg-primary-container opacity-20 blur-[100px] pointer-events-none"></div>
+<div class="absolute bottom-[-10%] right-[-5%] w-[30vw] h-[30vw] rounded-full bg-secondary-container opacity-20 blur-[80px] pointer-events-none"></div>
+<main class="w-full max-w-[1200px] h-[600px] mx-auto flex flex-col md:flex-row shadow-soft bg-surface rounded-[24px] overflow-hidden relative z-10 m-container-margin">
+<!-- Left Side: Brand Identity (Hidden on mobile) -->
+<div class="hidden md:flex md:w-1/2 bg-pattern p-xl flex-col justify-center relative">
+<div class="absolute inset-0 bg-gradient-to-br from-surface/80 to-primary-fixed/30 z-0"></div>
+<div class="relative z-10 max-w-sm mx-auto text-center space-y-lg">
+<div class="w-24 h-24 mx-auto bg-surface rounded-[24px] flex items-center justify-center shadow-soft mb-md rotate-[-5deg] transition-transform hover:rotate-0 duration-300">
+<span class="text-4xl">🐷</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">财务管家</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    轻松记账，温馨理财。<br/>让每一次收支都变成美好的小确幸。
+                </p>
+<div class="grid grid-cols-2 gap-md mt-xl pt-xl border-t border-primary-container/30">
+<div class="bg-surface/60 backdrop-blur-sm p-md rounded-xl shadow-sm text-left flex items-start space-x-sm">
+<span class="material-symbols-outlined text-primary text-xl">analytics</span>
+<div>
+<h3 class="font-label-md text-label-md text-primary">极简分析</h3>
+<p class="font-label-sm text-label-sm text-text-secondary mt-1">直观图表一目了然</p>
+</div>
+</div>
+<div class="bg-surface/60 backdrop-blur-sm p-md rounded-xl shadow-sm text-left flex items-start space-x-sm">
+<span class="material-symbols-outlined text-primary text-xl">security</span>
+<div>
+<h3 class="font-label-md text-label-md text-primary">安全可靠</h3>
+<p class="font-label-sm text-label-sm text-text-secondary mt-1">数据加密云端同步</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: Registration Form -->
+<div class="w-full md:w-1/2 p-xl flex flex-col justify-center bg-surface relative z-10">
+<div class="max-w-sm mx-auto w-full">
+<!-- Mobile Header (Hidden on Desktop) -->
+<div class="md:hidden text-center mb-xl">
+<span class="text-5xl block mb-sm">🐷</span>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">财务管家</h1>
+</div>
+<div class="mb-xl text-center md:text-left">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-xs">创建新账号 👋</h2>
+<p class="font-body-md text-body-md text-text-secondary">开启您的温馨记账之旅</p>
+</div>
+<form class="space-y-lg">
+<!-- Username -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="username">用户名</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-sm flex items-center text-text-secondary">
+<span class="material-symbols-outlined text-lg">person</span>
+</span>
+<input class="w-full pl-xl pr-sm py-sm bg-surface border border-primary-fixed-dim/50 rounded-xl focus:ring-2 focus:ring-primary-container focus:border-primary transition-colors outline-none font-body-md text-body-md text-on-surface placeholder:text-text-secondary shadow-sm" id="username" placeholder="请输入用户名" type="text"/>
+</div>
+</div>
+<!-- Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="password">设置密码</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-sm flex items-center text-text-secondary">
+<span class="material-symbols-outlined text-lg">lock</span>
+</span>
+<input class="w-full pl-xl pr-sm py-sm bg-surface border border-primary-fixed-dim/50 rounded-xl focus:ring-2 focus:ring-primary-container focus:border-primary transition-colors outline-none font-body-md text-body-md text-on-surface placeholder:text-text-secondary shadow-sm" id="password" placeholder="至少8位字符" type="password"/>
+</div>
+</div>
+<!-- Confirm Password -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-xs" for="confirm-password">确认密码</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-sm flex items-center text-text-secondary">
+<span class="material-symbols-outlined text-lg">lock_reset</span>
+</span>
+<input class="w-full pl-xl pr-sm py-sm bg-surface border border-primary-fixed-dim/50 rounded-xl focus:ring-2 focus:ring-primary-container focus:border-primary transition-colors outline-none font-body-md text-body-md text-on-surface placeholder:text-text-secondary shadow-sm" id="confirm-password" placeholder="再次输入密码" type="password"/>
+</div>
+</div>
+<!-- Submit Button -->
+<button class="w-full py-sm bg-primary-container text-on-primary-container font-label-md text-label-md font-bold rounded-xl shadow-button hover:bg-primary-fixed-dim hover:translate-y-[1px] hover:shadow-[0_3px_0_0_rgba(255,181,197,0.5)] active:translate-y-[4px] active:shadow-none transition-all flex items-center justify-center space-x-2" type="button">
+<span>立即注册</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</form>
+<div class="mt-lg text-center">
+<p class="font-label-md text-label-md text-text-secondary">
+                        已有账号？ 
+                        <a class="text-primary hover:text-primary-fixed-dim underline decoration-primary-container decoration-2 underline-offset-4 transition-colors" href="#">去登录</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

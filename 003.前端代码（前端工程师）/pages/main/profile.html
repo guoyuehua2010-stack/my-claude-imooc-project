@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 - 财务管家</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href="../../css/styles.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#874d5b",
+                        "primary-container": "#ffb5c5",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7b4351",
+                        "primary-fixed": "#ffd9e0",
+                        "primary-fixed-dim": "#fcb2c2",
+                        "secondary": "#744f90",
+                        "secondary-container": "#deb3fd",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#654181",
+                        "tertiary": "#2c6956",
+                        "tertiary-container": "#98d6bf",
+                        "background-cream": "#FFF9FA",
+                        "text-secondary": "#9B9B9B",
+                        "expense-coral": "#FF8A8A",
+                        "income-mint": "#A8E6CF",
+                        "surface": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "outline-variant": "#d6c2c4",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                    },
+                    boxShadow: {
+                        'soft-card': '0 15px 30px -2px rgba(255, 181, 197, 0.15)',
+                        'btn-press': '0 4px 10px rgba(255, 181, 197, 0.3)',
+                    },
+                    borderRadius: {
+                        'card': '16px',
+                        'input': '12px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF9FA;
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased">
+    <!-- Main Content Area -->
+    <main class="pb-24">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-primary-container to-secondary-container px-5 pt-8 pb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="font-display text-2xl font-bold text-primary">财务管家</h1>
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-variant">
+                    <img id="page-avatar" alt="User Profile" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop">
+                </div>
+            </div>
+            <div>
+                <h2 class="font-display text-xl text-on-surface mb-1">个人设置</h2>
+                <p class="font-body text-sm text-surface-variant">管理您的账户信息</p>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="p-5 space-y-5">
+            <!-- User Info Card -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <div class="flex items-center gap-4">
+                    <!-- Avatar with Upload -->
+                    <button id="avatar-btn" class="w-16 h-16 rounded-full overflow-hidden border-4 border-primary-container hover:border-primary transition-all relative group" onclick="document.getElementById('avatar-input').click()">
+                        <img id="avatar-preview" alt="User Avatar" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop">
+                        <!-- Upload Overlay -->
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-full">
+                            <span class="material-symbols-outlined text-white text-xl">photo_camera</span>
+                        </div>
+                    </button>
+                    <!-- Hidden File Input -->
+                    <input type="file" id="avatar-input" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
+                    <div>
+                        <h2 class="font-display text-lg font-bold text-on-surface">小明</h2>
+                        <p class="font-body text-sm text-secondary">ID: xiaoming2024</p>
+                        <p class="font-body text-xs text-secondary">注册于 2024年1月</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Settings -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <h3 class="font-display text-base font-semibold text-on-surface mb-3">预算设置</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-body text-sm text-on-surface">月度支出预算</span>
+                        <span class="font-body text-sm text-primary font-semibold">¥ 3,000</span>
+                    </div>
+                    <div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+                        <div class="h-full bg-primary rounded-full" style="width: 65%;"></div>
+                    </div>
+                    <p class="font-body text-xs text-secondary">已使用 65%，剩余 ¥ 1,050</p>
+                </div>
+            </div>
+
+            <!-- Data Management -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <h3 class="font-display text-base font-semibold text-on-surface mb-3">数据管理</h3>
+                <div class="space-y-1">
+                    <a href="accounts.html" class="w-full flex items-center justify-between py-3 px-2 hover:bg-surface-container-high rounded-lg transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">account_balance</span>
+                            <span class="font-body text-sm text-on-surface">账户管理</span>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary text-lg">chevron_right</span>
+                    </a>
+                    <a href="categories.html" class="w-full flex items-center justify-between py-3 px-2 hover:bg-surface-container-high rounded-lg transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">category</span>
+                            <span class="font-body text-sm text-on-surface">分类管理</span>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary text-lg">chevron_right</span>
+                    </a>
+                    <button class="w-full flex items-center justify-between py-3 px-2 hover:bg-surface-container-high rounded-lg transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">file_download</span>
+                            <span class="font-body text-sm text-on-surface">导出数据 (CSV)</span>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary text-lg">chevron_right</span>
+                    </button>
+                    <button class="w-full flex items-center justify-between py-3 px-2 hover:bg-surface-container-high rounded-lg transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">backup</span>
+                            <span class="font-body text-sm text-on-surface">备份数据 (JSON)</span>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary text-lg">chevron_right</span>
+                    </button>
+                    <button class="w-full flex items-center justify-between py-3 px-2 hover:bg-surface-container-high rounded-lg transition-colors">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">restore</span>
+                            <span class="font-body text-sm text-on-surface">恢复数据</span>
+                        </div>
+                        <span class="material-symbols-outlined text-secondary text-lg">chevron_right</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- About -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <h3 class="font-display text-base font-semibold text-on-surface mb-3">关于</h3>
+                <div class="space-y-1">
+                    <div class="flex items-center justify-between py-2 px-2">
+                        <span class="font-body text-sm text-on-surface">版本</span>
+                        <span class="font-body text-sm text-secondary">v1.0.1</span>
+                    </div>
+                    <div class="flex items-center justify-between py-2 px-2">
+                        <span class="font-body text-sm text-on-surface">数据存储</span>
+                        <span class="font-body text-sm text-secondary">本地 LocalStorage</span>
+                    </div>
+                    <div class="flex items-center justify-between py-2 px-2">
+                        <span class="font-body text-sm text-on-surface">隐私政策</span>
+                        <span class="material-symbols-outlined text-secondary text-lg">open_in_new</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logout Button -->
+            <button onclick="if(confirm('确定要退出登录吗？')) window.location.href='../auth/login.html'" class="w-full py-4 bg-red-50 text-red-500 font-body text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">logout</span>
+                退出登录
+            </button>
+
+            <!-- App Branding -->
+            <div class="bg-gradient-to-r from-primary-container to-secondary-container rounded-card p-6 text-center text-white">
+                <div class="text-3xl mb-2">💰</div>
+                <h3 class="font-display text-lg font-bold">财务管家</h3>
+                <p class="font-body text-xs opacity-90 mt-1">轻松记账，掌控财务</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white flex justify-around py-3 px-2 shadow-[0_-2px_12px_rgba(0,0,0,0.08)] z-40 pb-5">
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="home.html">
+            <span class="material-symbols-outlined text-[24px]">dashboard</span>
+            <span class="font-body text-[10px]">首页</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="add.html">
+            <span class="material-symbols-outlined text-[24px]">edit_square</span>
+            <span class="font-body text-[10px]">明细</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="bills.html">
+            <span class="material-symbols-outlined text-[24px]">analytics</span>
+            <span class="font-body text-[10px]">统计</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-primary" href="profile.html">
+            <span class="material-symbols-outlined text-[24px]">person</span>
+            <span class="font-body text-[10px]">设置</span>
+        </a>
+    </nav>
+
+    <script>
+        // ============ Avatar Upload ============
+        const AVATAR_KEY = 'xiaoqianhe_avatar';
+
+        // 页面加载时恢复保存的头像
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedAvatar = localStorage.getItem(AVATAR_KEY);
+            if (savedAvatar) {
+                document.getElementById('avatar-preview').src = savedAvatar;
+                const pageAvatar = document.getElementById('page-avatar');
+                if (pageAvatar) pageAvatar.src = savedAvatar;
+            }
+        });
+
+        // 处理头像上传
+        function handleAvatarUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // 验证文件类型
+            if (!file.type.startsWith('image/')) {
+                alert('请选择图片文件');
+                return;
+            }
+
+            // 验证文件大小 (最大 2MB)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('图片大小不能超过 2MB');
+                return;
+            }
+
+            // 使用 FileReader 读取图片
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const imageData = e.target.result;
+
+                // 保存到 localStorage
+                localStorage.setItem(AVATAR_KEY, imageData);
+
+                // 更新头像预览
+                document.getElementById('avatar-preview').src = imageData;
+                const pageAvatar = document.getElementById('page-avatar');
+                if (pageAvatar) pageAvatar.src = imageData;
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

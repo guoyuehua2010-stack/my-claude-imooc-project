@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类管理 - 财务管家</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href="../../css/styles.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#874d5b",
+                        "primary-container": "#ffb5c5",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7b4351",
+                        "primary-fixed": "#ffd9e0",
+                        "primary-fixed-dim": "#fcb2c2",
+                        "secondary": "#744f90",
+                        "secondary-container": "#deb3fd",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#654181",
+                        "tertiary": "#2c6956",
+                        "tertiary-container": "#98d6bf",
+                        "background-cream": "#FFF9FA",
+                        "text-secondary": "#9B9B9B",
+                        "expense-coral": "#FF8A8A",
+                        "income-mint": "#A8E6CF",
+                        "surface": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "outline-variant": "#d6c2c4",
+                        "category-dining": "#FFB5BA",
+                        "category-transport": "#B5DAFF",
+                        "category-shopping": "#FFE5B5",
+                        "category-housing": "#C5E8D5",
+                        "category-entertainment": "#E0B5FF",
+                        "category-medical": "#B5F0FF",
+                        "category-communication": "#B5E8FF",
+                        "category-edu": "#FFF5B5",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                    },
+                    boxShadow: {
+                        'soft-card': '0 15px 30px -2px rgba(255, 181, 197, 0.15)',
+                        'btn-press': '0 4px 10px rgba(255, 181, 197, 0.3)',
+                    },
+                    borderRadius: {
+                        'card': '16px',
+                        'input': '12px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF9FA;
+        }
+        .emoji-btn { cursor: pointer; transition: transform 0.2s; }
+        .emoji-btn:hover { transform: scale(1.2); }
+        .emoji-picker { display: none; }
+        .emoji-picker.show { display: grid; }
+    </style>
+</head>
+<body class="text-on-surface antialiased">
+    <!-- Main Content Area -->
+    <main class="pb-24">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-primary-container to-secondary-container px-5 pt-8 pb-6">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center gap-2">
+                    <a href="profile.html" class="w-10 h-10 rounded-full bg-white/50 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary">arrow_back</span>
+                    </a>
+                    <h1 class="font-display text-2xl font-bold text-primary">财务管家</h1>
+                </div>
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-variant">
+                    <img id="page-avatar" alt="User Profile" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop">
+                </div>
+            </div>
+            <div>
+                <h2 class="font-display text-xl text-on-surface mb-1">分类管理</h2>
+                <p class="font-body text-sm text-surface-variant">管理收支分类</p>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="p-5 space-y-5">
+            <!-- Type Toggle -->
+            <div class="flex bg-white rounded-xl p-1 shadow-soft">
+                <button id="type-expense-tab" class="flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all bg-primary-container text-on-primary-container" onclick="switchType('expense')">
+                    支出分类
+                </button>
+                <button id="type-income-tab" class="flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all text-surface-variant" onclick="switchType('income')">
+                    收入分类
+                </button>
+            </div>
+
+            <!-- Category List -->
+            <div id="category-list" class="space-y-3">
+                <!-- Categories will be rendered by JS -->
+            </div>
+
+            <!-- Add Category Button -->
+            <button onclick="showAddModal()" class="w-full py-4 bg-primary-container text-on-primary-container font-body text-base font-bold rounded-xl shadow-btn-press hover:bg-primary-fixed-dim active:translate-y-[2px] active:shadow-none transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">add</span>
+                添加分类
+            </button>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white flex justify-around py-3 px-2 shadow-[0_-2px_12px_rgba(0,0,0,0.08)] z-40 pb-5">
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="home.html">
+            <span class="material-symbols-outlined text-[24px]">dashboard</span>
+            <span class="font-body text-[10px]">首页</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="add.html">
+            <span class="material-symbols-outlined text-[24px]">edit_square</span>
+            <span class="font-body text-[10px]">明细</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="bills.html">
+            <span class="material-symbols-outlined text-[24px]">analytics</span>
+            <span class="font-body text-[10px]">统计</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-primary" href="profile.html">
+            <span class="material-symbols-outlined text-[24px]">person</span>
+            <span class="font-body text-[10px]">设置</span>
+        </a>
+    </nav>
+
+    <!-- Add/Edit Modal -->
+    <div id="modal" class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-2xl w-full max-w-sm p-6 space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 id="modal-title" class="font-display text-lg font-bold text-on-surface">添加分类</h3>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+                    <span class="material-symbols-outlined text-secondary">close</span>
+                </button>
+            </div>
+
+            <!-- Emoji Selector -->
+            <div class="text-center">
+                <div id="selected-emoji" class="w-16 h-16 rounded-full bg-primary-container mx-auto flex items-center justify-center text-3xl mb-2 cursor-pointer" onclick="toggleEmojiPicker()">
+                    🍜
+                </div>
+                <p class="font-body text-xs text-secondary">点击选择图标</p>
+            </div>
+
+            <!-- Emoji Picker -->
+            <div id="emoji-picker" class="emoji-picker grid grid-cols-8 gap-2 p-3 bg-surface-container-high rounded-xl max-h-40 overflow-y-auto">
+                <!-- Emojis will be rendered by JS -->
+            </div>
+
+            <!-- Category Name -->
+            <div>
+                <label class="block font-body text-sm font-semibold text-surface-variant mb-1">分类名称</label>
+                <input type="text" id="category-name" class="w-full px-4 py-3 bg-surface-container-high rounded-xl font-body text-base text-on-surface outline-none focus:ring-2 focus:ring-primary-container/50" placeholder="例如：餐饮美食">
+            </div>
+
+            <!-- Save Button -->
+            <button id="modal-save-btn" onclick="saveCategory()" class="w-full py-3 bg-primary text-on-primary font-body text-sm font-bold rounded-xl shadow-btn-press hover:bg-primary-fixed-dim transition-all">
+                保存
+            </button>
+
+            <!-- Delete Button (hidden by default) -->
+            <button id="modal-delete-btn" onclick="deleteCategory()" class="w-full py-3 bg-red-50 text-red-500 font-body text-sm font-bold rounded-xl transition-all hidden">
+                删除分类
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const CATEGORIES_KEY = 'xiaoqianhe_categories';
+        const EMOJIS = ['🍜', '🍔', '🍕', '🍱', '🍰', '🧁', '☕', '🍺', '🍹', '🥤', '🚗', '🚌', '🚕', '🚎', '🏍️', '🚲', '✈️', '🚂', '⛵', '🚢', '🛒', '👗', '👠', '💄', '🎮', '🎬', '🎭', '🎪', '🎯', '⚽', '🏀', '🏋️', '🏠', '🛋️', '🚿', '🛏️', '💡', '🔧', '📱', '💻', '📺', '📷', '🎵', '📚', '📖', '✏️', '🎓', '💊', '🏥', '💉', '🩺', '🚑', '🚨', '👶', '👴', '👮', '💰', '💳', '💵', '🪙', '💼', '📈', '📉', '🎁', '🎀', '🌸', '🌺', '🌻', '🌼', '🌷', '🌹', '🍀', '🌈', '☀️', '⭐', '🔥', '💫', '🎊', '🎉', '🎈', '🏆', '🥇', '💎', '🔮', '🧧', '🧳', '🎒', '👜', '👝', '👛', '🧤', '🧣', '🎩', '👑', '💍', '📌', '🗺️', '🔑', '💰', '🪙', '💎', '💵'];
+
+        let categories = {
+            expense: [],
+            income: []
+        };
+        let currentType = 'expense';
+        let editingIndex = -1;
+
+        // Load categories from localStorage
+        function loadCategories() {
+            const saved = localStorage.getItem(CATEGORIES_KEY);
+            if (saved) {
+                categories = JSON.parse(saved);
+            } else {
+                // Default categories
+                categories = {
+                    expense: [
+                        { id: 1, name: '餐饮', emoji: '🍜' },
+                        { id: 2, name: '交通', emoji: '🚗' },
+                        { id: 3, name: '购物', emoji: '🛒' },
+                        { id: 4, name: '居家', emoji: '🏠' },
+                        { id: 5, name: '娱乐', emoji: '🎮' },
+                        { id: 6, name: '医疗', emoji: '💊' },
+                        { id: 7, name: '通讯', emoji: '📱' },
+                        { id: 8, name: '教育', emoji: '📚' },
+                        { id: 9, name: '其他', emoji: '🍀' }
+                    ],
+                    income: [
+                        { id: 101, name: '工资', emoji: '💰' },
+                        { id: 102, name: '劳务', emoji: '💼' },
+                        { id: 103, name: '外快', emoji: '💵' },
+                        { id: 104, name: '投资', emoji: '📈' },
+                        { id: 105, name: '礼金', emoji: '🎁' },
+                        { id: 106, name: '生意', emoji: '🏪' },
+                        { id: 107, name: '其他', emoji: '💎' }
+                    ]
+                };
+                saveCategories();
+            }
+        }
+
+        // Save categories to localStorage
+        function saveCategories() {
+            localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categories));
+        }
+
+        // Switch type
+        function switchType(type) {
+            currentType = type;
+            const expenseTab = document.getElementById('type-expense-tab');
+            const incomeTab = document.getElementById('type-income-tab');
+
+            if (type === 'expense') {
+                expenseTab.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all bg-primary-container text-on-primary-container';
+                incomeTab.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all text-surface-variant';
+            } else {
+                incomeTab.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all bg-income-mint text-on-primary-container';
+                expenseTab.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all text-surface-variant';
+            }
+
+            renderCategories();
+        }
+
+        // Render category list
+        function renderCategories() {
+            const container = document.getElementById('category-list');
+            const list = categories[currentType];
+
+            container.innerHTML = list.map((cat, index) => `
+                <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30 flex items-center justify-between">
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 rounded-full ${currentType === 'expense' ? 'bg-category-dining' : 'bg-income-mint'} flex items-center justify-center text-2xl">
+                            ${cat.emoji}
+                        </div>
+                        <div>
+                            <h3 class="font-display text-base font-semibold text-on-surface">${cat.name}</h3>
+                            <p class="font-body text-xs text-secondary">${currentType === 'expense' ? '支出' : '收入'}分类</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button onclick="editCategory(${index})" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-primary-container/30 transition-colors">
+                            <span class="material-symbols-outlined text-secondary text-lg">edit</span>
+                        </button>
+                        <button onclick="deleteCategoryConfirm(${index})" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center hover:bg-red-50 transition-colors">
+                            <span class="material-symbols-outlined text-secondary text-lg">delete</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Render emoji picker
+        function renderEmojiPicker() {
+            const picker = document.getElementById('emoji-picker');
+            picker.innerHTML = EMOJIS.map(emoji => `
+                <button type="button" class="emoji-btn w-8 h-8 flex items-center justify-center text-xl rounded-lg hover:bg-white transition-colors" onclick="selectEmoji('${emoji}')">${emoji}</button>
+            `).join('');
+        }
+
+        // Toggle emoji picker
+        function toggleEmojiPicker() {
+            const picker = document.getElementById('emoji-picker');
+            picker.classList.toggle('show');
+        }
+
+        // Select emoji
+        function selectEmoji(emoji) {
+            document.getElementById('selected-emoji').textContent = emoji;
+            document.getElementById('emoji-picker').classList.remove('show');
+        }
+
+        // Show add modal
+        function showAddModal() {
+            editingIndex = -1;
+            document.getElementById('modal-title').textContent = '添加分类';
+            document.getElementById('selected-emoji').textContent = '🍜';
+            document.getElementById('category-name').value = '';
+            document.getElementById('modal-delete-btn').classList.add('hidden');
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+        }
+
+        // Edit category
+        function editCategory(index) {
+            editingIndex = index;
+            const cat = categories[currentType][index];
+            document.getElementById('modal-title').textContent = '编辑分类';
+            document.getElementById('selected-emoji').textContent = cat.emoji;
+            document.getElementById('category-name').value = cat.name;
+            document.getElementById('modal-delete-btn').classList.remove('hidden');
+            document.getElementById('modal').classList.remove('hidden');
+            document.getElementById('modal').classList.add('flex');
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+        }
+
+        // Save category
+        function saveCategory() {
+            const emoji = document.getElementById('selected-emoji').textContent;
+            const name = document.getElementById('category-name').value.trim();
+
+            if (!name) {
+                alert('请输入分类名称');
+                return;
+            }
+
+            if (editingIndex === -1) {
+                // Add new category
+                const maxId = categories[currentType].length > 0 ? Math.max(...categories[currentType].map(c => c.id)) : 0;
+                categories[currentType].push({ id: maxId + 1, name, emoji });
+            } else {
+                // Update existing category
+                categories[currentType][editingIndex] = { ...categories[currentType][editingIndex], name, emoji };
+            }
+
+            saveCategories();
+            renderCategories();
+            closeModal();
+        }
+
+        // Delete category confirmation
+        function deleteCategoryConfirm(index) {
+            const cat = categories[currentType][index];
+            if (confirm(`确定要删除分类"${cat.name}"吗？`)) {
+                categories[currentType].splice(index, 1);
+                saveCategories();
+                renderCategories();
+            }
+        }
+
+        // Delete category (from modal)
+        function deleteCategory() {
+            if (editingIndex !== -1) {
+                const cat = categories[currentType][editingIndex];
+                if (confirm(`确定要删除分类"${cat.name}"吗？`)) {
+                    categories[currentType].splice(editingIndex, 1);
+                    saveCategories();
+                    renderCategories();
+                    closeModal();
+                }
+            }
+        }
+
+        // Load saved avatar
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedAvatar = localStorage.getItem('xiaoqianhe_avatar');
+            if (savedAvatar) {
+                const avatarImg = document.getElementById('page-avatar');
+                if (avatarImg) avatarImg.src = savedAvatar;
+            }
+
+            loadCategories();
+            renderCategories();
+            renderEmojiPicker();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>明细 - 财务管家</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href="../../css/styles.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#874d5b",
+                        "primary-container": "#ffb5c5",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#7b4351",
+                        "primary-fixed": "#ffd9e0",
+                        "primary-fixed-dim": "#fcb2c2",
+                        "secondary": "#744f90",
+                        "secondary-container": "#deb3fd",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#654181",
+                        "tertiary": "#2c6956",
+                        "tertiary-container": "#98d6bf",
+                        "background-cream": "#FFF9FA",
+                        "text-secondary": "#9B9B9B",
+                        "expense-coral": "#FF8A8A",
+                        "income-mint": "#A8E6CF",
+                        "surface": "#fbf9f8",
+                        "on-surface": "#1b1c1c",
+                        "surface-variant": "#e4e2e2",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e9e8e7",
+                        "outline-variant": "#d6c2c4",
+                        "category-dining": "#FFB5BA",
+                        "category-transport": "#B5DAFF",
+                        "category-shopping": "#FFE5B5",
+                        "category-housing": "#C5E8D5",
+                        "category-entertainment": "#E0B5FF",
+                        "category-medical": "#B5F0FF",
+                        "category-communication": "#B5E8FF",
+                        "category-edu": "#FFF5B5",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                    },
+                    boxShadow: {
+                        'soft-card': '0 15px 30px -2px rgba(255, 181, 197, 0.15)',
+                        'btn-press': '0 4px 10px rgba(255, 181, 197, 0.3)',
+                    },
+                    borderRadius: {
+                        'card': '16px',
+                        'input': '12px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FFF9FA;
+        }
+    </style>
+</head>
+<body class="text-on-surface antialiased">
+    <!-- Main Content Area -->
+    <main class="pb-24">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-primary-container to-secondary-container px-5 pt-8 pb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h1 class="font-display text-2xl font-bold text-primary">财务管家</h1>
+                <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-variant">
+                    <img id="page-avatar" alt="User Profile" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop">
+                </div>
+            </div>
+            <div>
+                <h2 class="font-display text-xl text-on-surface mb-1">添加明细</h2>
+                <p class="font-body text-sm text-surface-variant">记录每一笔收支</p>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="p-5 space-y-5">
+            <!-- Type Toggle -->
+            <div class="flex bg-white rounded-xl p-1 shadow-soft">
+                <button id="type-expense" class="flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all bg-primary-container text-on-primary-container" onclick="switchType('expense')">
+                    支出
+                </button>
+                <button id="type-income" class="flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all text-surface-variant" onclick="switchType('income')">
+                    收入
+                </button>
+            </div>
+
+            <!-- Category Selection -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <h3 class="font-display text-base font-semibold text-on-surface mb-3">选择分类</h3>
+                <div id="categories" class="grid grid-cols-4 gap-3">
+                    <!-- Categories will be rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Amount Input -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <h3 class="font-display text-base font-semibold text-on-surface mb-3">金额 (元)</h3>
+                <input type="number" id="amount" class="w-full text-center font-display text-3xl font-bold text-on-surface bg-transparent outline-none placeholder:text-secondary" placeholder="0.00" step="0.01" min="0">
+            </div>
+
+            <!-- Note Input -->
+            <div class="bg-white rounded-card p-4 shadow-soft-card border border-surface-variant/30">
+                <h3 class="font-display text-base font-semibold text-on-surface mb-3">备注 (可选)</h3>
+                <input type="text" id="note" class="w-full bg-surface-container-high rounded-xl py-3 px-4 font-body text-sm text-on-surface outline-none focus:ring-2 focus:ring-primary-container/20 placeholder:text-secondary" placeholder="添加备注..." maxlength="50">
+            </div>
+
+            <!-- Save Button -->
+            <button id="save-btn" class="w-full py-4 bg-primary-container text-on-primary-container font-body text-base font-bold rounded-xl shadow-btn-press hover:bg-primary-fixed-dim active:translate-y-[2px] active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed" disabled onclick="saveRecord()">
+                保存
+            </button>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white flex justify-around py-3 px-2 shadow-[0_-2px_12px_rgba(0,0,0,0.08)] z-40 pb-5">
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="home.html">
+            <span class="material-symbols-outlined text-[24px]">dashboard</span>
+            <span class="font-body text-[10px]">首页</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-primary" href="add.html">
+            <span class="material-symbols-outlined text-[24px]">edit_square</span>
+            <span class="font-body text-[10px]">明细</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="bills.html">
+            <span class="material-symbols-outlined text-[24px]">analytics</span>
+            <span class="font-body text-[10px]">统计</span>
+        </a>
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="profile.html">
+            <span class="material-symbols-outlined text-[24px]">person</span>
+            <span class="font-body text-[10px]">设置</span>
+        </a>
+    </nav>
+
+    <script>
+        // 分类数据
+        const categories = {
+            expense: [
+                { id: 'meal', name: '餐饮', icon: '🍜', color: 'bg-category-dining' },
+                { id: 'transport', name: '交通', icon: '🚗', color: 'bg-category-transport' },
+                { id: 'shopping', name: '购物', icon: '🛒', color: 'bg-category-shopping' },
+                { id: 'housing', name: '居住', icon: '🏠', color: 'bg-category-housing' },
+                { id: 'entertainment', name: '娱乐', icon: '🎮', color: 'bg-category-entertainment' },
+                { id: 'medical', name: '医疗', icon: '💊', color: 'bg-category-medical' },
+                { id: 'communication', name: '通讯', icon: '📱', color: 'bg-category-communication' },
+                { id: 'education', name: '教育', icon: '📚', color: 'bg-category-edu' },
+                { id: 'other', name: '其他', icon: '···', color: 'bg-surface-variant' }
+            ],
+            income: [
+                { id: 'salary', name: '工资', icon: '💰', color: 'bg-income-mint' },
+                { id: 'parttime', name: '兼职', icon: '💼', color: 'bg-category-transport' },
+                { id: 'investment', name: '投资', icon: '📈', color: 'bg-category-entertainment' },
+                { id: 'gift', name: '礼金', icon: '🎁', color: 'bg-primary-container' },
+                { id: 'business', name: '生意', icon: '🏪', color: 'bg-category-shopping' },
+                { id: 'other', name: '其他', icon: '···', color: 'bg-surface-variant' }
+            ]
+        };
+
+        let currentType = 'expense';
+        let selectedCategory = null;
+
+        // 渲染分类
+        function renderCategories() {
+            const container = document.getElementById('categories');
+            const cats = categories[currentType];
+
+            container.innerHTML = cats.map(cat => `
+                <button class="flex flex-col items-center gap-1 p-3 rounded-xl transition-all ${selectedCategory === cat.id ? 'bg-' + cat.color.replace('bg-', '') + ' ring-2 ring-primary' : 'bg-surface-container-high hover:scale-105'}"
+                    onclick="selectCategory('${cat.id}')">
+                    <span class="text-2xl">${cat.icon}</span>
+                    <span class="font-body text-xs ${selectedCategory === cat.id ? 'text-on-primary-container' : 'text-on-surface'}">${cat.name}</span>
+                </button>
+            `).join('');
+        }
+
+        // 选择分类
+        function selectCategory(id) {
+            selectedCategory = id;
+            renderCategories();
+            updateSaveButton();
+        }
+
+        // 切换类型
+        function switchType(type) {
+            currentType = type;
+            selectedCategory = null;
+
+            const expenseBtn = document.getElementById('type-expense');
+            const incomeBtn = document.getElementById('type-income');
+
+            if (type === 'expense') {
+                expenseBtn.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all bg-primary-container text-on-primary-container';
+                incomeBtn.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all text-surface-variant';
+            } else {
+                incomeBtn.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all bg-income-mint text-on-primary-container';
+                expenseBtn.className = 'flex-1 py-3 px-4 rounded-lg font-body text-sm font-semibold transition-all text-surface-variant';
+            }
+
+            renderCategories();
+            updateSaveButton();
+        }
+
+        // 更新保存按钮状态
+        function updateSaveButton() {
+            const amount = document.getElementById('amount').value;
+            const saveBtn = document.getElementById('save-btn');
+            saveBtn.disabled = !selectedCategory || !amount || parseFloat(amount) <= 0;
+        }
+
+        // 金额输入监听
+        document.getElementById('amount').addEventListener('input', updateSaveButton);
+
+        // 保存记录
+        function saveRecord() {
+            const amount = document.getElementById('amount').value;
+            const note = document.getElementById('note').value;
+
+            // 模拟保存
+            alert(`已保存：${currentType === 'expense' ? '支出' : '收入'} ¥${amount} (${selectedCategory})`);
+            window.location.href = 'home.html';
+        }
+
+        // 初始化
+        renderCategories();
+
+        // 加载保存的头像
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedAvatar = localStorage.getItem('xiaoqianhe_avatar');
+            if (savedAvatar) {
+                const avatarImg = document.getElementById('page-avatar');
+                if (avatarImg) avatarImg.src = savedAvatar;
+            }
+        });
+    </script>
+</body>
+</html>

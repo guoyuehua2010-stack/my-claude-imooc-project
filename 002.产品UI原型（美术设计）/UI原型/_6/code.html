@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>添加交易 - 财务管家</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "category-shopping": "#FFE5B5",
+                    "on-secondary-fixed-variant": "#5a3777",
+                    "on-surface-variant": "#514346",
+                    "on-error-container": "#93000a",
+                    "text-secondary": "#9B9B9B",
+                    "on-tertiary-fixed": "#002118",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#96d3bd",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container-high": "#e9e8e7",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface-container": "#efeded",
+                    "tertiary-container": "#98d6bf",
+                    "tertiary-fixed": "#b1efd8",
+                    "surface": "#fbf9f8",
+                    "on-tertiary-fixed-variant": "#0d503f",
+                    "tertiary": "#2c6956",
+                    "on-tertiary-container": "#205e4d",
+                    "outline-variant": "#d6c2c4",
+                    "category-edu": "#FFF5B5",
+                    "outline": "#847376",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#f2daff",
+                    "category-transport": "#B5DAFF",
+                    "background": "#fbf9f8",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#e1b6ff",
+                    "on-primary-container": "#7b4351",
+                    "secondary-container": "#deb3fd",
+                    "primary-container": "#ffb5c5",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dbdad9",
+                    "secondary": "#744f90",
+                    "primary": "#874d5b",
+                    "on-background": "#1b1c1c",
+                    "surface-variant": "#e4e2e2",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#fcb2c2",
+                    "surface-tint": "#874d5b",
+                    "background-cream": "#FFF9FA",
+                    "primary-fixed": "#ffd9e0",
+                    "expense-coral": "#FF8A8A",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#fcb2c2",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f0f0",
+                    "on-secondary-fixed": "#2c0648",
+                    "inverse-surface": "#303030",
+                    "category-dining": "#FFB5BA",
+                    "category-housing": "#C5E8D5",
+                    "on-secondary-container": "#654181",
+                    "on-surface": "#1b1c1c",
+                    "income-mint": "#A8E6CF",
+                    "on-primary-fixed-variant": "#6c3644",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed": "#370c19"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "sm": "12px",
+                    "md": "16px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "container-margin": "20px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Be Vietnam Pro", "sans-serif"],
+                    "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+                    "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+                    "label-md": ["Be Vietnam Pro", "sans-serif"],
+                    "display-price": ["Plus Jakarta Sans", "sans-serif"],
+                    "label-sm": ["Be Vietnam Pro", "sans-serif"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+                    "body-md": ["Be Vietnam Pro", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "display-price": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            },
+            "boxShadow": {
+                "soft-float": "0 15px 30px -2px rgba(255, 181, 197, 0.15)",
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        /* Hide scrollbar for category grid but allow scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Input placeholder color fix */
+        input::placeholder, textarea::placeholder {
+            color: #9B9B9B; /* text-secondary */
+        }
+    </style>
+</head>
+<body class="bg-background-cream font-body-md text-on-surface min-h-screen flex selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar (Hidden on Mobile, Visible on Web) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 bg-surface shadow-sm border-r border-background-cream z-50 p-md">
+<!-- Brand / Header -->
+<div class="flex items-center gap-3 px-4 py-xl">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">财务管家</h1>
+<p class="font-label-sm text-label-sm text-text-secondary">Financial Steward</p>
+</div>
+</div>
+<!-- Main Navigation Tabs -->
+<div class="flex flex-col gap-2 mt-4 flex-1">
+<!-- Inactive Tab: 首页 -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">首页</span>
+</a>
+<!-- Active Tab: 记账 -->
+<a class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-bold scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="edit_square" data-weight="fill" style="font-variation-settings: 'FILL' 1;">edit_square</span>
+<span class="font-label-md text-label-md">记账</span>
+</a>
+<!-- Inactive Tab: 账单 -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">账单</span>
+</a>
+<!-- Inactive Tab: 我的 -->
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low rounded-xl transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">我的</span>
+</a>
+</div>
+<!-- Footer / Action -->
+<div class="mt-auto flex flex-col gap-4">
+<button class="w-full py-3 bg-primary text-on-primary rounded-xl font-label-md text-label-md font-bold shadow-soft-float hover:opacity-90 transition-opacity">
+                快速记账
+            </button>
+<div class="flex justify-around mt-4 pt-4 border-t border-surface-variant">
+<a class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors flex items-center justify-center" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</a>
+<a class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors flex items-center justify-center" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-w-0 md:ml-64 relative">
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-full px-container-margin md:px-xl py-xs h-16 sticky top-0 bg-surface/80 backdrop-blur-md z-40">
+<div class="flex items-center gap-4 md:hidden">
+<!-- Hamburger for mobile -->
+<button class="text-on-surface p-2 -ml-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-extrabold text-primary">记账</h2>
+</div>
+<div class="hidden md:block">
+<h2 class="font-headline-lg text-headline-lg text-primary">新增记录</h2>
+</div>
+<div class="flex items-center gap-4 ml-auto">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low rounded-full focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors hover:bg-surface-container-low rounded-full focus:ring-2 focus:ring-primary-container">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-high ml-2 border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A stylized, soft kawaii 3D avatar of a friendly character with pastel colors, well-lit studio lighting, minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2T6cUlLVdA7cWJAptpm5Kbf2NjMCqWZSrGBrZYjdISeI5odzOM8_LRkKVxbjUWE51Q2rnVZ2pfj6X5MDtBF_lh1S9lH1tfSxH1e9mAm8g-NV_FT9HKS6giy0wjah-pJE2XXUBxw8CKvIUqZpPkKnLdy18zW1b1OA8D4wHYTHIq0ROU75yW8KI9bE2k4KNJiP9nZNFhDvIjqECu6TqmTlOdWxvrfpx2H4-N6nayAZ4teW7A3VFqRDNxQ"/>
+</div>
+</div>
+</header>
+<!-- Page Content Canvas -->
+<div class="flex-1 p-container-margin md:p-xl overflow-y-auto flex justify-center pb-24 md:pb-xl">
+<!-- Central Transaction Card -->
+<div class="w-full max-w-lg bg-surface rounded-3xl p-md md:p-lg shadow-soft-float flex flex-col gap-6 relative overflow-hidden">
+<!-- Decorative background blob -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary-container/30 rounded-full blur-3xl pointer-events-none"></div>
+<!-- Type Toggle (Expense / Income) -->
+<div class="w-full max-w-[200px] mx-auto bg-surface-container flex rounded-full p-1 relative z-10">
+<button class="flex-1 py-2 rounded-full font-label-md text-label-md font-bold bg-primary text-on-primary shadow-sm transition-all text-center">
+                        支出
+                    </button>
+<button class="flex-1 py-2 rounded-full font-label-md text-label-md font-medium text-on-surface-variant hover:text-primary transition-all text-center">
+                        收入
+                    </button>
+</div>
+<!-- Amount Input Area -->
+<div class="flex flex-col items-center justify-center my-6 relative z-10">
+<span class="font-label-sm text-label-sm text-text-secondary mb-2">输入金额</span>
+<div class="flex items-baseline justify-center gap-1 border-b-2 border-primary-container pb-2 px-4 focus-within:border-primary transition-colors w-full max-w-[240px]">
+<span class="font-headline-lg text-headline-lg text-primary">¥</span>
+<input class="w-full bg-transparent border-none outline-none focus:ring-0 text-center font-display-price text-display-price text-on-surface p-0 m-0 h-12" placeholder="0.00" style="font-feature-settings: 'tnum';" type="number"/>
+</div>
+</div>
+<!-- Category Grid (Bento Style) -->
+<div class="flex flex-col gap-3 relative z-10">
+<span class="font-label-md text-label-md text-on-surface ml-1">分类</span>
+<div class="grid grid-cols-4 md:grid-cols-5 gap-y-4 gap-x-2">
+<!-- Dining -->
+<button class="flex flex-col items-center gap-2 group outline-none">
+<div class="w-12 h-12 rounded-2xl bg-category-dining flex items-center justify-center text-2xl shadow-sm group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                🍔
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface">餐饮</span>
+</button>
+<!-- Transport -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-category-transport flex items-center justify-center text-2xl group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                🚌
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">交通</span>
+</button>
+<!-- Shopping -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-category-shopping flex items-center justify-center text-2xl group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                🛍️
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">购物</span>
+</button>
+<!-- Housing -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-category-housing flex items-center justify-center text-2xl group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                🏠
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">居住</span>
+</button>
+<!-- Edu -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-category-edu flex items-center justify-center text-2xl group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                📚
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">学习</span>
+</button>
+<!-- Health -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-primary-container flex items-center justify-center text-2xl group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                💊
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">医疗</span>
+</button>
+<!-- Entertainment -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed flex items-center justify-center text-2xl group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                🎮
+                            </div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">娱乐</span>
+</button>
+<!-- Add Custom -->
+<button class="flex flex-col items-center gap-2 group outline-none opacity-60 hover:opacity-100 transition-opacity">
+<div class="w-12 h-12 rounded-2xl bg-surface-container-high border border-dashed border-outline flex items-center justify-center text-on-surface-variant group-hover:scale-105 transition-transform group-focus:ring-2 ring-primary ring-offset-2 ring-offset-surface">
+<span class="material-symbols-outlined">add</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">自定义</span>
+</button>
+</div>
+</div>
+<!-- Detail Inputs (Date & Note) Bento layout -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2 relative z-10">
+<!-- Date Picker -->
+<div class="bg-surface-container-lowest rounded-2xl p-3 border border-primary-container focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div class="flex flex-col flex-1">
+<span class="font-label-sm text-label-sm text-text-secondary">日期</span>
+<input class="bg-transparent border-none outline-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface cursor-pointer w-full text-left" type="date" value="2023-10-24"/>
+</div>
+</div>
+<!-- Note Input -->
+<div class="bg-surface-container-lowest rounded-2xl p-3 border border-outline-variant focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all flex items-center gap-3 md:col-span-1">
+<div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined">edit_note</span>
+</div>
+<div class="flex flex-col flex-1">
+<span class="font-label-sm text-label-sm text-text-secondary">备注 (选填)</span>
+<input class="bg-transparent border-none outline-none p-0 focus:ring-0 font-body-md text-body-md text-on-surface w-full placeholder-text-secondary" placeholder="例如：午饭" type="text"/>
+</div>
+</div>
+</div>
+<!-- Primary Action Button -->
+<div class="mt-4 relative z-10">
+<button class="w-full h-14 bg-primary text-on-primary rounded-2xl font-headline-md text-headline-md shadow-soft-float hover:-translate-y-1 hover:shadow-[0_20px_40px_-5px_rgba(255,181,197,0.3)] transition-all duration-300 active:translate-y-0 active:shadow-soft-float">
+                        保存记录
+                    </button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

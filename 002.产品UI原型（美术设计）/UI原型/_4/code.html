@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>登录 - 财务管家</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "category-shopping": "#FFE5B5",
+                    "on-secondary-fixed-variant": "#5a3777",
+                    "on-surface-variant": "#514346",
+                    "on-error-container": "#93000a",
+                    "text-secondary": "#9B9B9B",
+                    "on-tertiary-fixed": "#002118",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed-dim": "#96d3bd",
+                    "surface-container-low": "#f5f3f3",
+                    "surface-container-high": "#e9e8e7",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface-container": "#efeded",
+                    "tertiary-container": "#98d6bf",
+                    "tertiary-fixed": "#b1efd8",
+                    "surface": "#fbf9f8",
+                    "on-tertiary-fixed-variant": "#0d503f",
+                    "tertiary": "#2c6956",
+                    "on-tertiary-container": "#205e4d",
+                    "outline-variant": "#d6c2c4",
+                    "category-edu": "#FFF5B5",
+                    "outline": "#847376",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#f2daff",
+                    "category-transport": "#B5DAFF",
+                    "background": "#fbf9f8",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed-dim": "#e1b6ff",
+                    "on-primary-container": "#7b4351",
+                    "secondary-container": "#deb3fd",
+                    "primary-container": "#ffb5c5",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dbdad9",
+                    "secondary": "#744f90",
+                    "primary": "#874d5b",
+                    "on-background": "#1b1c1c",
+                    "surface-variant": "#e4e2e2",
+                    "surface-container-lowest": "#ffffff",
+                    "primary-fixed-dim": "#fcb2c2",
+                    "surface-tint": "#874d5b",
+                    "background-cream": "#FFF9FA",
+                    "primary-fixed": "#ffd9e0",
+                    "expense-coral": "#FF8A8A",
+                    "error": "#ba1a1a",
+                    "inverse-primary": "#fcb2c2",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f2f0f0",
+                    "on-secondary-fixed": "#2c0648",
+                    "inverse-surface": "#303030",
+                    "category-dining": "#FFB5BA",
+                    "category-housing": "#C5E8D5",
+                    "on-secondary-container": "#654181",
+                    "on-surface": "#1b1c1c",
+                    "income-mint": "#A8E6CF",
+                    "on-primary-fixed-variant": "#6c3644",
+                    "surface-bright": "#fbf9f8",
+                    "on-primary-fixed": "#370c19"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "xs": "8px",
+                    "xl": "32px",
+                    "sm": "12px",
+                    "md": "16px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "container-margin": "20px"
+            },
+            "fontFamily": {
+                    "body-lg": [
+                            "Be Vietnam Pro"
+                    ],
+                    "headline-lg": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "headline-md": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-md": [
+                            "Be Vietnam Pro"
+                    ],
+                    "display-price": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label-sm": [
+                            "Be Vietnam Pro"
+                    ],
+                    "headline-lg-mobile": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-md": [
+                            "Be Vietnam Pro"
+                    ]
+            },
+            "fontSize": {
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "headline-md": [
+                            "20px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-price": [
+                            "36px",
+                            {
+                                    "lineHeight": "44px",
+                                    "letterSpacing": "-0.03em",
+                                    "fontWeight": "800"
+                            }
+                    ],
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .shadow-soft {
+            box-shadow: 0 4px 15px -2px rgba(255, 181, 197, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background-cream text-on-background min-h-screen font-body-md text-body-md flex items-center justify-center p-md md:p-xl">
+<main class="w-full max-w-5xl bg-surface rounded-xl shadow-soft flex flex-col md:flex-row overflow-hidden">
+<!-- Left Side: Brand & Welcome -->
+<div class="hidden md:flex md:w-1/2 bg-primary-fixed p-xl flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<div class="flex items-center gap-xs text-primary mb-xl">
+<span class="material-symbols-outlined text-4xl" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<h1 class="font-headline-lg text-headline-lg font-extrabold text-primary">财务管家</h1>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-primary-container mb-sm">欢迎回来，<br/>让每一分钱都有迹可循</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                    We turn the often-stressful task of financial management into a soothing, delightful ritual. Soft, simple, and always on your side.
+                </p>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary-container rounded-full opacity-50 blur-3xl"></div>
+<div class="absolute -top-20 -right-20 w-80 h-80 bg-secondary-container rounded-full opacity-50 blur-3xl"></div>
+<img class="relative z-10 w-full max-w-sm self-center mt-lg object-contain" data-alt="A soft, abstract 3D illustration of coins and a friendly piggy bank floating gently in a minimalist, light-mode environment. The lighting is soft and high-key, casting very soft shadows on a cream base. The overall palette features pastel sakura pinks, soft creams, and subtle peach accents to evoke a calm, organized feeling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6MDOpDtthEkumZ40A2x4-NwPlzj3tFHDpf5-8lWmhvS-aqWEeWvwzZ2nrR91YdNITbWHK1ddZTw8tmooyLcgGIYfqOb4j0RlD7-AaHziHn5vMpp4nv9rSfF7eYX_SjIJkdcI9bHLE1p7evnFAQJQoqfUtbFg_I-KNd1BiLWleO57DVEvYnkFmfTViZgMitVgp_5MdXa18BXrwK8iMoLP0aTYq9wEmlIzBZoMpEXN8eThQEDifReBS9A"/>
+</div>
+<!-- Right Side: Login Form -->
+<div class="w-full md:w-1/2 p-lg md:p-xl flex flex-col justify-center bg-surface relative">
+<!-- Mobile Header (Hidden on Desktop) -->
+<div class="flex md:hidden items-center justify-center gap-xs text-primary mb-xl">
+<span class="material-symbols-outlined text-3xl" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary">财务管家</h1>
+</div>
+<div class="max-w-md w-full mx-auto">
+<div class="mb-lg">
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-xs">登录账户</h2>
+<p class="font-body-md text-body-md text-text-secondary">请输入您的用户名和密码以继续。</p>
+</div>
+<form class="flex flex-col gap-md">
+<!-- Username Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-base" for="username">用户名</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-sm text-text-secondary">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-sm pl-xl pr-sm font-body-md text-body-md text-on-surface placeholder:text-text-secondary focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-colors" id="username" name="username" placeholder="输入用户名" type="text"/>
+</div>
+</div>
+<!-- Password Input -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-base" for="password">密码</label>
+<div class="relative">
+<span class="absolute inset-y-0 left-0 flex items-center pl-sm text-text-secondary">
+<span class="material-symbols-outlined" data-icon="lock">lock</span>
+</span>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg py-sm pl-xl pr-sm font-body-md text-body-md text-on-surface placeholder:text-text-secondary focus:border-primary-container focus:ring-2 focus:ring-primary-container/20 transition-colors" id="password" name="password" placeholder="输入密码" type="password"/>
+</div>
+</div>
+<!-- Remember Me & Forgot Password -->
+<div class="flex items-center justify-between mt-xs mb-sm">
+<label class="flex items-center gap-xs cursor-pointer">
+<input class="w-4 h-4 rounded border-outline-variant text-primary focus:ring-primary-container" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">记住我</span>
+</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-on-primary-container transition-colors" href="#">忘记密码？</a>
+</div>
+<!-- Login Button -->
+<button class="w-full bg-primary text-on-primary font-label-md text-label-md py-sm rounded-lg shadow-soft hover:bg-on-primary-container transition-colors flex justify-center items-center gap-xs" type="button">
+                        登录
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</form>
+<div class="mt-xl text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        还没有账户？ 
+                        <a class="font-label-md text-label-md text-primary hover:text-on-primary-container transition-colors ml-base" href="#">立即注册</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+</body></html>

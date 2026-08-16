@@ -158,8 +158,16 @@
                     <!-- Error Message -->
                     <div id="register-error" class="text-red-500 text-sm text-center hidden"></div>
 
+                    <!-- Success Message -->
+                    <div id="register-success" class="text-green-500 text-sm text-center hidden"></div>
+
+                    <!-- Loading State -->
+                    <div id="register-loading" class="text-center hidden">
+                        <span class="text-primary">注册中...</span>
+                    </div>
+
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full py-3 bg-primary-container text-on-primary-container font-body text-sm font-bold rounded-xl shadow-button hover:bg-primary-fixed-dim hover:translate-y-[1px] hover:shadow-[0_3px_0_0_rgba(255,181,197,0.5)] active:translate-y-[4px] active:shadow-none transition-all flex items-center justify-center space-x-2 mt-2">
+                    <button type="submit" id="register-btn" class="w-full py-3 bg-primary-container text-on-primary-container font-body text-sm font-bold rounded-xl shadow-button hover:bg-primary-fixed-dim hover:translate-y-[1px] hover:shadow-[0_3px_0_0_rgba(255,181,197,0.5)] active:translate-y-[4px] active:shadow-none transition-all flex items-center justify-center space-x-2 mt-2 disabled:opacity-50">
                         <span>立即注册</span>
                         <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </button>
@@ -175,15 +183,26 @@
         </div>
     </main>
 
+    <!-- API Module -->
+    <script src="../../js/api.js"></script>
     <script>
-        document.getElementById('register-form').addEventListener('submit', function(e) {
+        // 注册表单提交
+        document.getElementById('register-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const username = document.getElementById('username').value;
+
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
             const errorEl = document.getElementById('register-error');
+            const successEl = document.getElementById('register-success');
+            const loadingEl = document.getElementById('register-loading');
+            const registerBtn = document.getElementById('register-btn');
 
-            // 验证
+            // 清除消息
+            errorEl.classList.add('hidden');
+            successEl.classList.add('hidden');
+
+            // 本地验证
             if (username.length < 3 || username.length > 20) {
                 errorEl.textContent = '用户名需要3-20个字符';
                 errorEl.classList.remove('hidden');
@@ -202,8 +221,34 @@
                 return;
             }
 
-            // 注册成功后跳转到登录页
-            window.location.href = 'login.html';
+            // 显示加载状态
+            loadingEl.classList.remove('hidden');
+            registerBtn.disabled = true;
+
+            try {
+                const result = await userAPI.register(username, password);
+
+                if (result.success) {
+                    successEl.textContent = '注册成功！即将跳转到登录页...';
+                    successEl.classList.remove('hidden');
+                    // 保存会话
+                    sessionManager.saveSession(result.data);
+                    // 跳转到登录页
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 1500);
+                } else {
+                    errorEl.textContent = result.message || '注册失败';
+                    errorEl.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('注册错误:', error);
+                errorEl.textContent = '网络错误，请检查服务器是否运行';
+                errorEl.classList.remove('hidden');
+            } finally {
+                loadingEl.classList.add('hidden');
+                registerBtn.disabled = false;
+            }
         });
     </script>
 </body>

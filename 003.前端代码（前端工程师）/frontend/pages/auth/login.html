@@ -132,8 +132,13 @@
                     <!-- Error Message -->
                     <div id="login-error" class="text-red-500 text-sm text-center hidden"></div>
 
+                    <!-- Loading State -->
+                    <div id="login-loading" class="text-center hidden">
+                        <span class="text-primary">登录中...</span>
+                    </div>
+
                     <!-- Login Button -->
-                    <button type="submit" class="w-full bg-primary text-on-primary font-body text-sm font-semibold py-3 rounded-lg shadow-soft hover:bg-on-primary-container transition-colors flex justify-center items-center gap-2 mt-2">
+                    <button type="submit" id="login-btn" class="w-full bg-primary text-on-primary font-body text-sm font-semibold py-3 rounded-lg shadow-soft hover:bg-on-primary-container transition-colors flex justify-center items-center gap-2 mt-2 disabled:opacity-50">
                         登录
                         <span class="material-symbols-outlined text-lg">arrow_forward</span>
                     </button>
@@ -142,22 +147,35 @@
                 <div class="mt-8 text-center">
                     <p class="font-body text-base text-on-surface">
                         还没有账户？
-                        <a class="font-body text-sm font-semibold text-primary hover:text-on-primary-container transition-colors ml-1" href="../auth/register.html">立即注册</a>
+                        <a class="font-body text-sm font-semibold text-primary hover:text-on-primary-container transition-colors ml-1" href="register.html">立即注册</a>
                     </p>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- API Module -->
+    <script src="../../js/api.js"></script>
     <script>
-        // 简化的登录处理
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+        // 检查是否已登录
+        if (sessionManager.isLoggedIn()) {
+            window.location.href = '../main/home.html';
+        }
+
+        // 登录表单提交
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
-            const username = document.getElementById('username').value;
+
+            const username = document.getElementById('username').value.trim();
             const password = document.getElementById('password').value;
             const errorEl = document.getElementById('login-error');
+            const loadingEl = document.getElementById('login-loading');
+            const loginBtn = document.getElementById('login-btn');
 
-            // 简单的本地验证
+            // 清除错误
+            errorEl.classList.add('hidden');
+
+            // 本地验证
             if (username.length < 3) {
                 errorEl.textContent = '用户名至少需要3个字符';
                 errorEl.classList.remove('hidden');
@@ -170,8 +188,30 @@
                 return;
             }
 
-            // 模拟登录成功，跳转到首页
-            window.location.href = '../main/home.html';
+            // 显示加载状态
+            loadingEl.classList.remove('hidden');
+            loginBtn.disabled = true;
+
+            try {
+                const result = await userAPI.login(username, password);
+
+                if (result.success) {
+                    // 保存会话
+                    sessionManager.saveSession(result.data);
+                    // 跳转到首页
+                    window.location.href = '../main/home.html';
+                } else {
+                    errorEl.textContent = result.message || '登录失败';
+                    errorEl.classList.remove('hidden');
+                }
+            } catch (error) {
+                console.error('登录错误:', error);
+                errorEl.textContent = '网络错误，请检查服务器是否运行';
+                errorEl.classList.remove('hidden');
+            } finally {
+                loadingEl.classList.add('hidden');
+                loginBtn.disabled = false;
+            }
         });
     </script>
 </body>

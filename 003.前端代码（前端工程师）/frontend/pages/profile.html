@@ -182,7 +182,7 @@
             </div>
 
             <!-- Logout Button -->
-            <button onclick="if(confirm('确定要退出登录吗？')) window.location.href='login.html'" class="w-full py-4 bg-red-50 text-red-500 font-body text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
+            <button onclick="handleLogout()" class="w-full py-4 bg-red-50 text-red-500 font-body text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
                 <span class="material-symbols-outlined">logout</span>
                 退出登录
             </button>
@@ -262,6 +262,19 @@
             };
             reader.readAsDataURL(file);
         }
+
+        // 处理退出登录
+        async function handleLogout() {
+            if (!confirm('确定要退出登录吗？')) return;
+            try {
+                await userAPI.logout();
+            } catch (e) {
+                console.log('登出API调用失败', e);
+            }
+            sessionManager.clearSession();
+            window.location.href = 'login.html';
+        }
     </script>
+    <script src="../js/api.js"></script>
 </body>
 </html>

@@ -15,4 +15,7 @@ router.post('/logout', userController.logout);
 // 验证Token
 router.get('/verify', userController.verifyToken);
 
+// 获取用户信息
+router.get('/profile', authMiddleware, userController.getProfile);
+
 module.exports = router;

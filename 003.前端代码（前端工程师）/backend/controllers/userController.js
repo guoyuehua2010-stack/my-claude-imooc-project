@@ -249,9 +249,67 @@ async function verifyToken(req, res) {
     }
 }
 
+// 获取用户信息
+async function getProfile(req, res) {
+    try {
+        const token = req.headers.authorization?.replace('Bearer ', '');
+
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: '未提供Token'
+            });
+        }
+
+        const [sessions] = await pool.query(
+            `SELECT s.user_id FROM sessions s WHERE s.token = ? AND s.expires_at > NOW()`,
+            [token]
+        );
+
+        if (sessions.length === 0) {
+            return res.status(401).json({
+                success: false,
+                message: 'Token已过期或无效'
+            });
+        }
+
+        const userId = sessions[0].user_id;
+
+        const [users] = await pool.query(
+            'SELECT id, username, avatar, created_at FROM users WHERE id = ?',
+            [userId]
+        );
+
+        if (users.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: '用户不存在'
+            });
+        }
+
+        res.json({
+            success: true,
+            data: {
+                userId: users[0].id,
+                username: users[0].username,
+                avatar: users[0].avatar,
+                createdAt: users[0].created_at
+            }
+        });
+
+    } catch (error) {
+        console.error('获取用户信息错误:', error);
+        res.status(500).json({
+            success: false,
+            message: '服务器内部错误'
+        });
+    }
+}
+
 module.exports = {
     register,
     login,
     logout,
-    verifyToken
+    verifyToken,
+    getProfile
 };

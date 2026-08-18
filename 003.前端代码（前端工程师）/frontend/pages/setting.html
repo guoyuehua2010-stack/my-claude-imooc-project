@@ -98,9 +98,9 @@
                     <!-- Hidden File Input -->
                     <input type="file" id="avatar-input" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
                     <div>
-                        <h2 class="font-display text-lg font-bold text-on-surface">小明</h2>
-                        <p class="font-body text-sm text-secondary">ID: xiaoming2024</p>
-                        <p class="font-body text-xs text-secondary">注册于 2024年1月</p>
+                        <h2 id="profile-username" class="font-display text-lg font-bold text-on-surface">加载中...</h2>
+                        <p id="profile-userid" class="font-body text-sm text-secondary">ID: -</p>
+                        <p id="profile-created" class="font-body text-xs text-secondary">注册于 -</p>
                     </div>
                 </div>
             </div>
@@ -198,7 +198,7 @@
 
     <!-- Bottom Navigation -->
     <nav class="fixed bottom-0 left-0 right-0 bg-white flex justify-around py-3 px-2 shadow-[0_-2px_12px_rgba(0,0,0,0.08)] z-40 pb-5">
-        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="home.html">
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="dashboard.html">
             <span class="material-symbols-outlined text-[24px]">dashboard</span>
             <span class="font-body text-[10px]">首页</span>
         </a>
@@ -206,11 +206,11 @@
             <span class="material-symbols-outlined text-[24px]">edit_square</span>
             <span class="font-body text-[10px]">明细</span>
         </a>
-        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="bills.html">
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-secondary" href="statistics.html">
             <span class="material-symbols-outlined text-[24px]">analytics</span>
             <span class="font-body text-[10px]">统计</span>
         </a>
-        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-primary" href="profile.html">
+        <a class="flex flex-col items-center gap-0.5 px-3 py-1 text-primary" href="setting.html">
             <span class="material-symbols-outlined text-[24px]">person</span>
             <span class="font-body text-[10px]">设置</span>
         </a>
@@ -274,6 +274,31 @@
             sessionManager.clearSession();
             window.location.href = 'login.html';
         }
+
+        // 加载用户信息
+        async function loadUserProfile() {
+            try {
+                const result = await userAPI.getProfile();
+                if (result.success) {
+                    const user = result.data;
+                    document.getElementById('profile-username').textContent = user.username;
+                    document.getElementById('profile-userid').textContent = 'ID: ' + user.userId.substring(0, 8);
+                    const createdDate = new Date(user.createdAt);
+                    const formattedDate = createdDate.getFullYear() + '年' + (createdDate.getMonth() + 1) + '月';
+                    document.getElementById('profile-created').textContent = '注册于 ' + formattedDate;
+                    if (user.avatar) {
+                        document.getElementById('avatar-preview').src = user.avatar;
+                        const pageAvatar = document.getElementById('page-avatar');
+                        if (pageAvatar) pageAvatar.src = user.avatar;
+                    }
+                }
+            } catch (e) {
+                console.log('加载用户信息失败', e);
+            }
+        }
+
+        // 页面加载时获取用户信息
+        loadUserProfile();
     </script>
     <script src="../js/api.js"></script>
 </body>

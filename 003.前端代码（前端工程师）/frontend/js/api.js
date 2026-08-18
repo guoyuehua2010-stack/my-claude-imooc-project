@@ -54,6 +54,11 @@ const userAPI = {
     // 验证Token
     verify: () => {
         return apiRequest('/users/verify');
+    },
+
+    // 获取用户信息
+    getProfile: () => {
+        return apiRequest('/users/profile');
     }
 };
 

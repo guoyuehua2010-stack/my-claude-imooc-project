@@ -99,8 +99,7 @@
                     <input type="file" id="avatar-input" accept="image/*" class="hidden" onchange="handleAvatarUpload(event)">
                     <div>
                         <h2 id="profile-username" class="font-display text-lg font-bold text-on-surface">加载中...</h2>
-                        <p id="profile-userid" class="font-body text-sm text-secondary">ID: -</p>
-                        <p id="profile-created" class="font-body text-xs text-secondary">注册于 -</p>
+                        <p id="profile-created" class="font-body text-sm text-secondary">注册于 -</p>
                     </div>
                 </div>
             </div>
@@ -282,7 +281,6 @@
                 if (result.success) {
                     const user = result.data;
                     document.getElementById('profile-username').textContent = user.username;
-                    document.getElementById('profile-userid').textContent = 'ID: ' + user.userId.substring(0, 8);
                     const createdDate = new Date(user.createdAt);
                     const formattedDate = createdDate.getFullYear() + '年' + (createdDate.getMonth() + 1) + '月';
                     document.getElementById('profile-created').textContent = '注册于 ' + formattedDate;
